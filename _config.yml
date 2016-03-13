@@ -1,3 +1,5 @@
 markdown: redcarpet
 baseurl: /cheesesteakphilly
 exclude: ['README.md']
+sass:
+    style: :compressed
