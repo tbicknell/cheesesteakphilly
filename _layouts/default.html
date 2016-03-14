@@ -2,22 +2,37 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="">
+
         <title>cheesesteakphilly</title>
-        <link rel="stylesheet" href="{{site.baseurl}}/css/styles.css">
+
+        <link rel="stylesheet" href="{{ "/css/styles.css" }}">
     </head>
     <body>
 
         <header>
-            <h1>cheesesteakphilly</h1>
             {% include nav.html %}
         </header>
 
-        {{content}}
+        <div class="container">
+            <div class="starter-template">
+                {{content}}
+            </div><!-- /.starter-template -->
+        </div><!-- /.container -->
 
         <footer>
             <p>&copy; 2016 cheesesteakphilly.com</p>
         </footer>
+
+        <!-- jQuery Version 2.2.1 -->
+        <script src="{{ "/js/jquery-2.2.1.min.js" }}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{ "/js/bootstrap.min.js" }}"></script>
 
     </body>
 </html>

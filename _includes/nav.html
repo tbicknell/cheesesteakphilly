@@ -1,6 +1,19 @@
-<nav>
-    <ul>
-        <li><a href="{{site.baseurl}}/index.html">Home</a></li>
-        <li><a href="{{site.baseurl}}/test.html">Test</a></li>
-    </ul>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Cheesesteak Philly</a>
+        </div><!--/.navbar-header -->
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav {{page.url}}">
+                <li class="{% if page.url == '/' %}active{% endif %}"><a href="{{site.baseurl}}/">Home</a></li>
+                <li class="{% if page.url == '/test.html' %}active{% endif %}"><a href="{{site.baseurl}}/test/">Test</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container -->
 </nav>
