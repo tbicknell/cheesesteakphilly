@@ -14,19 +14,9 @@
     </head>
     <body>
 
-        <header>
-            {% include nav.html %}
-        </header>
+        <div class="sidenav">sidenav stuff here</div>
 
-        <div class="container">
-            <div class="starter-template">
-                {{content}}
-            </div><!-- /.starter-template -->
-        </div><!-- /.container -->
-
-        <footer>
-            <p>&copy; 2016 cheesesteakphilly.com</p>
-        </footer>
+        <div id="map" class="map"></div>
 
         <!-- jQuery Version 2.2.1 -->
         <script src="{{site.baseurl}}/js/jquery-2.2.1.min.js"></script>
@@ -34,5 +24,9 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="{{site.baseurl}}/js/bootstrap.min.js"></script>
 
+        <!-- google maps api -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPIYm71sqblJlxth5QRqERG2XY8bQilxI&callback=initMap" async defer></script>
+
+        <script src="{{site.baseurl}}/js/map.js"></script>
     </body>
 </html>
