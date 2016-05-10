@@ -3,6 +3,7 @@
 var mapModule = (function() {
     var map;
     var infowindow;
+    var bounds;
 
     var init = function () {
         var philly = { lat: 39.9526, lng: -75.1652 };
@@ -13,6 +14,7 @@ var mapModule = (function() {
         };
         map = new google.maps.Map(mapElement, mapOptions);
         infowindow = new google.maps.InfoWindow();
+        bounds = new google.maps.LatLngBounds();
         var service = new google.maps.places.PlacesService(map);
 
         service.nearbySearch({
@@ -25,15 +27,14 @@ var mapModule = (function() {
     var nearbySearchCallback = function(results, status) {
         console.log(results);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < results.length; i++) {
-              createMarker(results[i], bounds);
+                createMarker(results[i]);
             }
             map.fitBounds(bounds);
         }
     };
 
-    var createMarker = function(place, bounds) {
+    var createMarker = function(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: map,
