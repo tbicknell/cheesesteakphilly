@@ -27,12 +27,17 @@ var mapModule = (function() {
     };
 
     var nearbySearchCallback = function(results, status) {
+        // sort results by descending rating
         sortedResults = _.sortBy(results, ['rating']).reverse();
+
+        // remove any undefined ratings
+        sortedResults = _.remove(sortedResults, function(n) {
+            return n.rating !== undefined;
+        });
         console.log(sortedResults);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < sortedResults.length; i++) {
                 createMarker(sortedResults[i]);
-                createListItem(sortedResults[i]);
             }
             map.fitBounds(bounds);
         }
@@ -46,36 +51,28 @@ var mapModule = (function() {
         });
 
         bounds.extend(marker.getPosition());
-
+        createListItem(place, marker);
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.setContent(place.name);
             infowindow.open(map, this);
         });
     };
 
-    var sortByRatings = function(place) {
-        _.sortBy(users, ['user', 'age']);
-    }
-
-    var createListItem = function(place) {
+    var createListItem = function(place, marker) {
         $('<li />')
             .html(
                 '<h2>' + place.name + '</h2>' +
-                '<h3>'  + place.rating + '</h3>'
+                '<p>rating: ' + place.rating + '</p>'
             )
+            .click(function() {
+                map.panTo(marker.getPosition());
+                infowindow.setContent(place.name);
+                infowindow.open(map, marker);
+            })
             .appendTo('.sidenav');
     };
 
-    var sortNumber = function(a,b) {
-        return a - b;
-    }
-
-// var numArray = [140000, 104, 99];
-// numArray.sort(sortNumber);
-
     return {
-        init: init,
-        nearbySearchCallback: nearbySearchCallback,
-        createMarker: createMarker
+        init: init
     };
 })();
