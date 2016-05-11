@@ -4,6 +4,7 @@ var mapModule = (function() {
     var map;
     var infowindow;
     var bounds;
+    var sortedResults = [];
 
     var init = function () {
         var philly = { lat: 39.9526, lng: -75.1652 };
@@ -16,19 +17,22 @@ var mapModule = (function() {
         infowindow = new google.maps.InfoWindow();
         bounds = new google.maps.LatLngBounds();
         var service = new google.maps.places.PlacesService(map);
-
-        service.nearbySearch({
+        var request = {
             location: philly,
             keyword: 'Cheesesteak',
             radius: 10000,
-        }, nearbySearchCallback);
+        }
+
+        service.nearbySearch(request, nearbySearchCallback);
     };
 
     var nearbySearchCallback = function(results, status) {
-        console.log(results);
+        sortedResults = _.sortBy(results, ['rating']).reverse();
+        console.log(sortedResults);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                createMarker(results[i]);
+            for (var i = 0; i < sortedResults.length; i++) {
+                createMarker(sortedResults[i]);
+                createListItem(sortedResults[i]);
             }
             map.fitBounds(bounds);
         }
@@ -48,6 +52,26 @@ var mapModule = (function() {
             infowindow.open(map, this);
         });
     };
+
+    var sortByRatings = function(place) {
+        _.sortBy(users, ['user', 'age']);
+    }
+
+    var createListItem = function(place) {
+        $('<li />')
+            .html(
+                '<h2>' + place.name + '</h2>' +
+                '<h3>'  + place.rating + '</h3>'
+            )
+            .appendTo('.sidenav');
+    };
+
+    var sortNumber = function(a,b) {
+        return a - b;
+    }
+
+// var numArray = [140000, 104, 99];
+// numArray.sort(sortNumber);
 
     return {
         init: init,

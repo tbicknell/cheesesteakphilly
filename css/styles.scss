@@ -15,5 +15,7 @@ html, body {
 
 .sidenav {
     float: left;
+    overflow-y: scroll;
     width: 30%;
+    height: 100%;
 }
