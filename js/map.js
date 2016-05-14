@@ -53,23 +53,28 @@ var mapModule = (function() {
         bounds.extend(marker.getPosition());
         createListItem(place, marker);
         google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(place.name);
-            infowindow.open(map, this);
+            setInfowindow(place, marker);
         });
     };
 
+    var setInfowindow = function(place, marker) {
+        infowindow.setContent(place.name);
+        infowindow.open(map, marker);
+    };
+
     var createListItem = function(place, marker) {
-        $('<li />')
+        $('<a class="list-group-item" />')
             .html(
-                '<h2>' + place.name + '</h2>' +
-                '<p>rating: ' + place.rating + '</p>'
+                '<h2 class="list-group-item-heading">' + place.name + '</h2><p class="list-group-item-text">rating: ' + place.rating + '</p>'
             )
             .click(function() {
+                $('.active').removeClass('active');
+                $(this).addClass('active');
                 map.panTo(marker.getPosition());
-                infowindow.setContent(place.name);
-                infowindow.open(map, marker);
+                map.setZoom(13);
+                setInfowindow(place, marker);
             })
-            .appendTo('.sidenav');
+            .appendTo('.list-group');
     };
 
     return {

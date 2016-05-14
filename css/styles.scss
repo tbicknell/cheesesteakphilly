@@ -13,9 +13,13 @@ html, body {
     height: 100%;
 }
 
-.sidenav {
+.list-group {
     float: left;
     overflow-y: scroll;
     width: 30%;
     height: 100%;
+
+    .list-group-item {
+        cursor: pointer;
+    }
 }
