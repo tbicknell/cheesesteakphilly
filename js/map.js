@@ -64,9 +64,7 @@ var mapModule = (function() {
 
     var createListItem = function(place, marker) {
         $('<a class="list-group-item" />')
-            .html(
-                '<h2 class="list-group-item-heading">' + place.name + '</h2><p class="list-group-item-text">rating: ' + place.rating + '</p>'
-            )
+            .html('<h3 class="list-group-item-heading">' + place.name + '</h3><div class="rating-container"><span class="rating-number">' + place.rating + '</span><div class="rating-stars"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100"><defs><path id="a" d="M0 0h500v100H0V0zm50 79L20.6 94.5l5.6-32.8L2.4 38.5l33-4.7L50 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L50 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L150 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L150 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L250 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L250 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L350 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L350 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L450 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L450 79z"/></defs><use fill-rule="evenodd" xlink:href="#a"/></svg><meter min="0" max="5" value="' + place.rating + '"></meter></div></div>')
             .click(function() {
                 $('.active').removeClass('active');
                 $(this).addClass('active');

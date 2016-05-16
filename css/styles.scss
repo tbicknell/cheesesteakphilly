@@ -3,6 +3,12 @@
 
 @import "bootstrap";
 
+// vars
+$red: #DF5A49;
+$orange: #E27A3F;
+$yellow: #EFC94C;
+$grey: #f5f5f5;
+
 html, body {
     height: 100%;
     margin: 0;
@@ -21,5 +27,74 @@ html, body {
 
     .list-group-item {
         cursor: pointer;
+
+        &.active {
+            background-color: $red;
+            border-color: $red;
+        }
+    }
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+
+    .rating-number {
+        padding-right: 7px;
+        font-size: 16px;
+        font-weight: bold;
+        color: $yellow;
+    }
+
+    .rating-stars {
+        position: relative;
+        width: 100px;
+        height: 20px;
+
+        svg {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            fill: #fff;
+
+            .list-group-item:hover & {
+                fill: $grey;
+            }
+
+            .list-group-item.active & {
+                fill: $red;
+            }
+        }
+
+        meter {
+            appearance: none;
+            -webkit-appearance: none;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ddd;
+
+            &::-webkit-meter-bar {
+                background: none;
+                background: #ddd;
+            }
+
+            &::-moz-meter-bar {
+                background: $yellow;
+            }
+
+            &::-webkit-meter-optimum-value,
+            &::-webkit-meter-suboptimum-value,
+            &::-webkit-meter-even-less-good-value {
+                background: $yellow;
+            }
+        }
     }
 }
