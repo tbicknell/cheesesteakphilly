@@ -47,6 +47,7 @@ var mapModule = (function() {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: map,
+            animation: google.maps.Animation.DROP,
             position: place.geometry.location
         });
 
@@ -58,7 +59,7 @@ var mapModule = (function() {
     };
 
     var setInfowindow = function(place, marker) {
-        infowindow.setContent(place.name);
+        infowindow.setContent('<h5>' + place.name + '</h5><p>' + place.vicinity + '</p><a href="/detail?placeId=' + place.place_id + '">full details</a>');
         infowindow.open(map, marker);
     };
 
