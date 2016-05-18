@@ -17,12 +17,17 @@ html, body {
 
 .map {
     height: 100%;
+    width: 100%;
+
+    @media only screen and (min-width : $screen-sm-min) {
+        width: 70%;
+    }
 }
 
 .list-group {
     float: left;
     overflow-y: scroll;
-    width: 30%;
+    width: 100%;
     height: 100%;
 
     .list-group-item {
@@ -32,6 +37,10 @@ html, body {
             background-color: $red;
             border-color: $red;
         }
+    }
+
+    @media only screen and (min-width : $screen-sm-min) {
+        width: 30%;
     }
 }
 
