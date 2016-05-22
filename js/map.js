@@ -35,13 +35,25 @@ var mapModule = (function() {
             return n.rating !== undefined;
         });
         console.log(sortedResults);
+
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < sortedResults.length; i++) {
                 createMarker(sortedResults[i]);
             }
             map.fitBounds(bounds);
+            render(sortedResults);
         }
     };
+
+    var render = function(places) {
+        var data = {
+            places: places
+        };
+        var listGroup = $('.list-group');
+        var source = $('#list-template').html();
+        var template = Handlebars.compile(source);
+        listGroup.html(template(data));
+    }
 
     var createMarker = function(place) {
         var placeLoc = place.geometry.location;
@@ -52,10 +64,7 @@ var mapModule = (function() {
         });
 
         bounds.extend(marker.getPosition());
-        createListItem(place, marker);
-        google.maps.event.addListener(marker, 'click', function() {
-            setInfowindow(place, marker);
-        });
+        bindEvents(place, marker);
     };
 
     var setInfowindow = function(place, marker) {
@@ -63,17 +72,18 @@ var mapModule = (function() {
         infowindow.open(map, marker);
     };
 
-    var createListItem = function(place, marker) {
-        $('<a class="list-group-item" />')
-            .html('<h3 class="list-group-item-heading">' + place.name + '</h3><div class="rating-container"><span class="rating-number">' + place.rating + '</span><div class="rating-stars"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100"><defs><path id="a" d="M0 0h500v100H0V0zm50 79L20.6 94.5l5.6-32.8L2.4 38.5l33-4.7L50 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L50 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L150 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L150 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L250 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L250 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L350 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L350 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L450 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L450 79z"/></defs><use fill-rule="evenodd" xlink:href="#a"/></svg><meter min="0" max="5" value="' + place.rating + '"></meter></div></div>')
-            .click(function() {
-                $('.active').removeClass('active');
-                $(this).addClass('active');
-                map.panTo(marker.getPosition());
-                map.setZoom(13);
-                setInfowindow(place, marker);
-            })
-            .appendTo('.list-group');
+    var bindEvents = function(place, marker) {
+        google.maps.event.addListener(marker, 'click', function() {
+            setInfowindow(place, marker);
+        });
+
+        $(document).on('touchend click', '#'+place.id, function() {
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            map.panTo(marker.getPosition());
+            map.setZoom(13);
+            setInfowindow(place, marker);
+        });
     };
 
     return {
