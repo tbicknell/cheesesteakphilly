@@ -15,6 +15,37 @@ html, body {
     padding: 0;
 }
 
+header {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    min-height: 75px;
+    background: #333;
+}
+
+.logo {
+    float: left;
+    padding: 10px 15px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    color: $orange;
+    text-decoration: none;
+    font-family: 'Catamaran', sans-serif;
+
+    &:hover, &:active {
+        color: $orange;
+        text-decoration: none;
+    }
+}
+
+.motto {
+    float: left;
+    color: wheat;
+    font-family: 'Catamaran', sans-serif;
+    text-transform: uppercase;
+}
+
 .map {
     height: 100%;
     width: 100%;
@@ -32,10 +63,11 @@ html, body {
 
     .list-group-item {
         cursor: pointer;
+        border-radius: 0;
 
         &.active {
-            background-color: $red;
-            border-color: $red;
+            background-color: $orange;
+            border-color: $orange;
         }
     }
 
@@ -75,7 +107,7 @@ html, body {
             }
 
             .list-group-item.active & {
-                fill: $red;
+                fill: $orange;
             }
         }
 
