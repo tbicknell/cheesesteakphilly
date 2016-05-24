@@ -53,7 +53,7 @@ var mapModule = (function() {
         var source = $('#list-template').html();
         var template = Handlebars.compile(source);
         listGroup.html(template(data));
-    }
+    };
 
     var createMarker = function(place) {
         var placeLoc = place.geometry.location;

@@ -10,7 +10,7 @@
 <script src="{{site.baseurl}}/js/handlebars.min.js"></script>
 
 <!-- google maps api -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPIYm71sqblJlxth5QRqERG2XY8bQilxI&libraries=places&callback=mapModule.init" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPIYm71sqblJlxth5QRqERG2XY8bQilxI&libraries=places&callback={{page.module}}.init" async defer></script>
 
 {% if page.custom_js %}
     {% for js_file in page.custom_js %}
