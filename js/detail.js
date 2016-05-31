@@ -30,8 +30,31 @@ var detailModule = (function() {
             });
             map.panTo(marker.getPosition());
             map.setZoom(15);
+            render(place);
         }
     };
+
+    var render = function(place) {
+        var placePhotos = [];
+
+        for (var i = 0; i < place.photos.length; i++) {
+            placePhotos.push(Object.assign({url: place.photos[i].getUrl({'maxWidth': 200, 'maxHeight': 200})}, place.photos[i]));
+        }
+
+        place.photos = placePhotos;
+        Handlebars.registerHelper('photourl', function(object) {
+            var url = Handlebars.escapeExpression(object);
+
+            return new Handlebars.SafeString(
+                "<img src='" + url + "' />"
+            );
+        });
+        var detailInfo = $('.detail-info');
+        var source = $('#detail-template').html();
+        var template = Handlebars.compile(source);
+        detailInfo.html(template(place));
+
+    }
 
     var getQueryVariable = function(variable) {
         var query = window.location.search.substring(1);

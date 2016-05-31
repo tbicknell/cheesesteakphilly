@@ -5,5 +5,65 @@ custom_js:
 - detail
 ---
 
-<h1>detail page</h1>
+<div class="detail-info"></div>
 <div id="detail-map" class="detail-map"></div>
+
+<script id="detail-template" type="text/x-handlebars-template">
+    {% raw %}
+        <h1>{{name}}</h1>
+        <div class="rating-container">
+            <span class="rating-number">{{rating}}</span>
+            <div class="rating-stars">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100"><defs><path id="a" d="M0 0h500v100H0V0zm50 79L20.6 94.5l5.6-32.8L2.4 38.5l33-4.7L50 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L50 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L150 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L150 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L250 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L250 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L350 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L350 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L450 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L450 79z"/></defs><use fill-rule="evenodd" xlink:href="#a"/></svg><meter min="0" max="5" value="{{rating}}"></meter>
+            </div>
+        </div>
+        <p><span>Address:</span> {{formatted_address}}</p>
+        <p><span>Phone:</span> <a href="tel:{{international_phone_number}}">{{formatted_phone_number}}</a></p>
+        <p>
+            <span>Hours:</span>
+            <ul>
+                {{#if opening_hours.open_now}}
+                    <li>Open Now</li>
+                {{/if}}
+                {{#opening_hours.weekday_text}}
+                    <li>{{this}}</li>
+                {{/opening_hours.weekday_text}}
+            </ul>
+        </p>
+        <p><span>Website:</span> <a href="{{website}}">{{website}}</a></p>
+        <p>
+            <span>Photos:</span>
+            <ul>
+                {{#if photos}}
+                    {{#photos}}
+                        <li>{{{photourl this.url}}}</li>
+                        {{#if this.html_attributions}}
+                            {{#this.html_attributions}}
+                                <span>Photo by {{{this}}}</span>
+                            {{/this.html_attributions}}
+                        {{/if}}
+                    {{/photos}}
+                {{/if}}
+            </ul>
+        <p>
+        <p>
+            <span>Reviews:</span>
+            <ul>
+                {{#if reviews}}
+                    {{#reviews}}
+                        <li>
+                            <p><a href="{{this.author_url}}">{{this.author_name}}</a></p>
+                            <div class="rating-container">
+                                <span class="rating-number">{{this.rating}}</span>
+                                <div class="rating-stars">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100"><defs><path id="a" d="M0 0h500v100H0V0zm50 79L20.6 94.5l5.6-32.8L2.4 38.5l33-4.7L50 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L50 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L150 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L150 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L250 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L250 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L350 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L350 79zm100 0l-29.4 15.5 5.6-32.8-23.8-23.2 33-4.7L450 4l14.7 29.8 33 4.7-24 23.2 5.7 32.8L450 79z"/></defs><use fill-rule="evenodd" xlink:href="#a"/></svg><meter min="0" max="5" value="{{this.rating}}"></meter>
+                                </div>
+                            </div>
+                            <p>{{this.text}}</p>
+                        </li>
+                    {{/reviews}}
+                {{/if}}
+            </ul>
+        <p>
+    {% endraw %}
+</script>
