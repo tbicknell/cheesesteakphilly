@@ -52,6 +52,8 @@ var mapModule = (function() {
         var listGroup = $('.list-group');
         var source = $('#list-template').html();
         var template = Handlebars.compile(source);
+        var ratingSource = $('#rating-template').html();
+        Handlebars.registerPartial('ratingPartial', ratingSource);
         listGroup.html(template(data));
     };
 

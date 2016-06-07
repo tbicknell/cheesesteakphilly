@@ -52,6 +52,8 @@ var detailModule = (function() {
         var detailInfo = $('.detail-info');
         var source = $('#detail-template').html();
         var template = Handlebars.compile(source);
+        var ratingSource = $('#rating-template').html();
+        Handlebars.registerPartial('ratingPartial', ratingSource);
         detailInfo.html(template(place));
 
     }
