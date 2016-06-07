@@ -38,7 +38,7 @@ var detailModule = (function() {
         var placePhotos = [];
 
         for (var i = 0; i < place.photos.length; i++) {
-            placePhotos.push(Object.assign({url: place.photos[i].getUrl({'maxWidth': 200, 'maxHeight': 200})}, place.photos[i]));
+            placePhotos.push(Object.assign({url: place.photos[i].getUrl({'maxWidth': 500, 'maxHeight': 500})}, place.photos[i]));
         }
 
         place.photos = placePhotos;
@@ -55,7 +55,9 @@ var detailModule = (function() {
         var ratingSource = $('#rating-template').html();
         Handlebars.registerPartial('ratingPartial', ratingSource);
         detailInfo.html(template(place));
-
+        $('.photo-slider').unslider({
+            nav: false
+        });
     }
 
     var getQueryVariable = function(variable) {

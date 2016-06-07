@@ -25,7 +25,6 @@ header {
 }
 
 .logo {
-    float: left;
     padding: 10px 15px;
     font-size: 36px;
     letter-spacing: 1px;
@@ -40,7 +39,6 @@ header {
 }
 
 .motto {
-    float: left;
     color: wheat;
     font-family: 'Catamaran', sans-serif;
     text-transform: uppercase;
@@ -55,9 +53,23 @@ header {
     }
 }
 
+.detail-info {
+    float: left;
+    width: 100%;
+    padding: 0 15px 0 15px;
+
+    @media only screen and (min-width : $screen-sm-min) {
+        width: 50%;
+    }
+}
+
 .detail-map {
-    width: 40%;
+    width: 100%;
     height: 50%;
+
+    @media only screen and (min-width : $screen-sm-min) {
+        width: 50%;
+    }
 }
 
 .list-group {
@@ -78,6 +90,12 @@ header {
 
     @media only screen and (min-width : $screen-sm-min) {
         width: 30%;
+    }
+}
+
+.photo-slider {
+    span {
+        display: block;
     }
 }
 
