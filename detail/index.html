@@ -2,7 +2,6 @@
 layout: default
 module: detailModule
 custom_js:
-- unslider-min
 - detail
 ---
 
@@ -27,23 +26,22 @@ custom_js:
             </ul>
         </p>
         <p><span>Website:</span> <a href="{{website}}">{{website}}</a></p>
-
-        <div class="photo-slider">
-            <ul>
-                {{#if photos}}
-                    {{#photos}}
-                        <li>
-                            {{{photourl this.url}}}
-                            {{#if this.html_attributions}}
-                                {{#this.html_attributions}}
-                                    <span>Photo by {{{this}}}</span>
-                                {{/this.html_attributions}}
-                            {{/if}}
-                        </li>
-                    {{/photos}}
-                {{/if}}
-            </ul>
-        </div>
+        {{!--
+        <ul>
+            {{#if photos}}
+                {{#photos}}
+                    <li>
+                        {{{photourl this.url}}}
+                        {{#if this.html_attributions}}
+                            {{#this.html_attributions}}
+                                <span>Photo by {{{this}}}</span>
+                            {{/this.html_attributions}}
+                        {{/if}}
+                    </li>
+                {{/photos}}
+            {{/if}}
+        </ul>
+        --}}
         <p>
             <span>Reviews:</span>
             <ul>

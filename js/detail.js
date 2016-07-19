@@ -35,6 +35,7 @@ var detailModule = (function() {
     };
 
     var render = function(place) {
+        /*
         var placePhotos = [];
 
         for (var i = 0; i < place.photos.length; i++) {
@@ -49,15 +50,13 @@ var detailModule = (function() {
                 "<img src='" + url + "' />"
             );
         });
+        */
         var detailInfo = $('.detail-info');
         var source = $('#detail-template').html();
         var template = Handlebars.compile(source);
         var ratingSource = $('#rating-template').html();
         Handlebars.registerPartial('ratingPartial', ratingSource);
         detailInfo.html(template(place));
-        $('.photo-slider').unslider({
-            nav: false
-        });
     }
 
     var getQueryVariable = function(variable) {
