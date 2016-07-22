@@ -81,6 +81,7 @@ var mapModule = (function() {
 
         $(document).on('touchend click', '#'+place.id, function() {
             $('.active').removeClass('active');
+            $('.collapse.in').collapse('toggle');
             $(this).addClass('active');
             map.panTo(marker.getPosition());
             map.setZoom(13);
