@@ -79,7 +79,7 @@ var mapModule = (function() {
             setInfowindow(place, marker);
         });
 
-        $(document).on('touchend click', '#'+place.id, function() {
+        $(document).on('click', '#'+place.id, function() {
             $('.active').removeClass('active');
             $('.collapse.in').collapse('toggle');
             $(this).addClass('active');
