@@ -1,13 +1,13 @@
-/*meter{
+meter{
     display: block;
     border: 1px outset;
     height: 20px;
     width: 100px;
     overflow: hidden;
-}*/
+}
 meter div
 {
     display: block;
-    /*height: 20px;*/
+    height: 20px;
     background: #EFC94C; /* old browsers */
 }

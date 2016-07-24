@@ -11,14 +11,14 @@
 
 <script src="https://use.fontawesome.com/d432814e13.js"></script>
 
-<!-- google maps api -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPIYm71sqblJlxth5QRqERG2XY8bQilxI&libraries=places&callback={{page.module}}.init" async defer></script>
-
 {% if page.custom_js %}
     {% for js_file in page.custom_js %}
         <script src="{{site.baseurl}}/js/{{ js_file }}.js"></script>
     {% endfor %}
 {% endif %}
+
+<!-- google maps api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPIYm71sqblJlxth5QRqERG2XY8bQilxI&libraries=places&callback={{page.module}}.init" async defer></script>
 
 <script id="rating-template" type="text/x-handlebars-template">
     {% raw %}
