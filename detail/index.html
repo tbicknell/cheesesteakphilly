@@ -11,21 +11,33 @@ custom_js:
 <script id="detail-template" type="text/x-handlebars-template">
     {% raw %}
         <h1>{{name}}</h1>
+
         {{> ratingPartial }}
-        <p><span>Address:</span> {{formatted_address}}</p>
-        <p><span>Phone:</span> <a href="tel:{{international_phone_number}}">{{formatted_phone_number}}</a></p>
+
         <p>
-            <span>Hours:</span>
+            <strong>Address:</strong> {{formatted_address}}
+        </p>
+
+        <p>
+            <strong>Phone:</strong> <a href="tel:{{international_phone_number}}">{{formatted_phone_number}}</a>
+        </p>
+
+        <p>
+            <strong>Hours:</strong>
             <ul>
                 {{#if opening_hours.open_now}}
-                    <li>Open Now</li>
+                    <li class="open-now">Open Now</li>
                 {{/if}}
                 {{#opening_hours.weekday_text}}
                     <li>{{this}}</li>
                 {{/opening_hours.weekday_text}}
             </ul>
         </p>
-        <p><span>Website:</span> <a href="{{website}}">{{website}}</a></p>
+
+        <p>
+            <strong>Website:</strong> <a href="{{website}}">{{website}}</a>
+        </p>
+
         {{!--
         <ul>
             {{#if photos}}
@@ -42,19 +54,16 @@ custom_js:
             {{/if}}
         </ul>
         --}}
+
         <p>
-            <span>Reviews:</span>
-            <ul>
-                {{#if reviews}}
-                    {{#reviews}}
-                        <li>
-                            <p><a href="{{this.author_url}}">{{this.author_name}}</a></p>
-                            {{> ratingPartial }}
-                            <p>{{this.text}}</p>
-                        </li>
-                    {{/reviews}}
-                {{/if}}
-            </ul>
+            <strong>Reviews:</strong>
+            {{#if reviews}}
+                {{#reviews}}
+                    <p class="review-author"><a href="{{this.author_url}}">{{this.author_name}}</a></p>
+                    {{> ratingPartial }}
+                    <p class="review-text">{{this.text}}</p>
+                {{/reviews}}
+            {{/if}}
         <p>
     {% endraw %}
 </script>
