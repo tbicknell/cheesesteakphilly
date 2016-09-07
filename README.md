@@ -1,3 +1,2 @@
-# cheesesteakphilly
-## Wiz Wit
-Find the best cheesesteaks in Philly
+# [cheesesteakphilly.com](http://cheesesteakphilly.com)
+## Find the best cheesesteaks in Philly
