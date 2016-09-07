@@ -10,60 +10,62 @@ custom_js:
 
 <script id="detail-template" type="text/x-handlebars-template">
     {% raw %}
-        <h2>{{name}}</h2>
+        <div itemscope itemtype="http://schema.org/Restaurant">
+            <h1 itemprop="name">{{name}}</h1>
 
-        {{> ratingPartial }}
+            {{> ratingPartial }}
 
-        <p>
-            <strong>Address:</strong> {{formatted_address}}
-        </p>
+            <p>
+                <strong>Address:</strong> {{formatted_address}}
+            </p>
 
-        <p>
-            <strong>Phone:</strong> <a href="tel:{{international_phone_number}}">{{formatted_phone_number}}</a>
-        </p>
+            <p>
+                <strong>Phone:</strong> <a href="tel:{{international_phone_number}}">{{formatted_phone_number}}</a>
+            </p>
 
-        <p>
-            <strong>Hours:</strong>
+            <p>
+                <strong>Hours:</strong>
+                <ul>
+                    {{#if opening_hours.open_now}}
+                        <li class="open-now">Open Now</li>
+                    {{/if}}
+                    {{#opening_hours.weekday_text}}
+                        <li>{{this}}</li>
+                    {{/opening_hours.weekday_text}}
+                </ul>
+            </p>
+
+            <p>
+                <strong>Website:</strong> <a href="{{website}}">{{website}}</a>
+            </p>
+
+            {{!--
             <ul>
-                {{#if opening_hours.open_now}}
-                    <li class="open-now">Open Now</li>
+                {{#if photos}}
+                    {{#photos}}
+                        <li>
+                            {{{photourl this.url}}}
+                            {{#if this.html_attributions}}
+                                {{#this.html_attributions}}
+                                    <span>Photo by {{{this}}}</span>
+                                {{/this.html_attributions}}
+                            {{/if}}
+                        </li>
+                    {{/photos}}
                 {{/if}}
-                {{#opening_hours.weekday_text}}
-                    <li>{{this}}</li>
-                {{/opening_hours.weekday_text}}
             </ul>
-        </p>
+            --}}
 
-        <p>
-            <strong>Website:</strong> <a href="{{website}}">{{website}}</a>
-        </p>
-
-        {{!--
-        <ul>
-            {{#if photos}}
-                {{#photos}}
-                    <li>
-                        {{{photourl this.url}}}
-                        {{#if this.html_attributions}}
-                            {{#this.html_attributions}}
-                                <span>Photo by {{{this}}}</span>
-                            {{/this.html_attributions}}
-                        {{/if}}
-                    </li>
-                {{/photos}}
-            {{/if}}
-        </ul>
-        --}}
-
-        <p>
-            <strong>Reviews:</strong>
-            {{#if reviews}}
-                {{#reviews}}
-                    <p class="review-author"><a href="{{this.author_url}}">{{this.author_name}}</a></p>
-                    {{> ratingPartial }}
-                    <p class="review-text">{{this.text}}</p>
-                {{/reviews}}
-            {{/if}}
-        <p>
+            <p>
+                <strong>Reviews:</strong>
+                {{#if reviews}}
+                    {{#reviews}}
+                        <p class="review-author"><a href="{{this.author_url}}">{{this.author_name}}</a></p>
+                        {{> ratingPartial }}
+                        <p class="review-text">{{this.text}}</p>
+                    {{/reviews}}
+                {{/if}}
+            <p>
+        </div>
     {% endraw %}
 </script>
