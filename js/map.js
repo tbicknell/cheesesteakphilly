@@ -70,7 +70,7 @@ var mapModule = (function() {
     };
 
     var setInfowindow = function(place, marker) {
-        infowindow.setContent('<h5>' + place.name + '</h5><p>' + place.vicinity + '</p><a href="/cheesesteakphilly/detail?placeId=' + place.place_id + '">full details</a>');
+        infowindow.setContent('<h5>' + place.name + '</h5><p>' + place.vicinity + '</p><a href="/detail?placeId=' + place.place_id + '">full details</a>');
         infowindow.open(map, marker);
     };
 
