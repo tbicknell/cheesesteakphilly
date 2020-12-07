@@ -11,11 +11,11 @@ custom_js:
 <script id="list-template" type="text/x-handlebars-template">
     {% raw %}
         {{#places}}
-            <a id="{{id}}" role="button" data-toggle="collapse" href="#collapse-{{id}}" class="list-group-item">
+            <a id="{{place_id}}" role="button" data-toggle="collapse" href="#collapse-{{place_id}}" class="list-group-item">
                 <h3 class="list-group-item-heading">{{name}}</h3>
                 {{> ratingPartial }}
             </a>
-            <div class="collapse" id="collapse-{{id}}">
+            <div class="collapse" id="collapse-{{place_id}}">
                 <div class="well">
                     <a class="btn btn-primary" role="button" href="/detail?placeId={{place_id}}">full details <i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>
                 </div>
